@@ -4,9 +4,12 @@ import team1 from "../../assets/team/team1.jpg";
 import team2 from "../../assets/team/team2.jpg";
 
 function Banner() {
+
+ 
+
   return (
     <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content bg-red-500 flex-col lg:flex-row-reverse">
+      <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="flex-1">
           <motion.img
             animate={{
@@ -27,8 +30,6 @@ function Banner() {
         </div>
         <div className="flex-1">
           <motion.h1
-            initial={{ scale: 0 }}
-            animate={{ scale: 1, transition: { duration: 2 } }}
             className="text-5xl font-extrabold"
           >
             Find Your{" "}
