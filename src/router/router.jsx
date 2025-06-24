@@ -8,6 +8,7 @@ import { param } from "motion/react-client";
 import { Loader } from "lucide-react";
 import PrivateRoute from "../routes/PrivateRoute";
 import JobApply from "../pages/JobApply";
+import MyApplications from "../pages/MyApplications";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <JobApply />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-applications",
+        element: (
+          <PrivateRoute>
+            <MyApplications />
           </PrivateRoute>
         ),
       },

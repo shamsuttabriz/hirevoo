@@ -13,6 +13,13 @@ function Navbar() {
       <li>
         <NavLink to="/about">About</NavLink>
       </li>
+      {user && (
+        <>
+          <li>
+            <NavLink to="/my-applications">My Applications</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 
@@ -56,7 +63,9 @@ function Navbar() {
             {links}
           </ul>
         </div>
-        <Link to="/" className="text-xl font-extrabold">HIREVOO</Link>
+        <Link to="/" className="text-xl font-extrabold">
+          HIREVOO
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
