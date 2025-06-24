@@ -1,5 +1,5 @@
 import React, { use } from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 function Navbar() {
@@ -56,7 +56,7 @@ function Navbar() {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">HIREVOO</a>
+        <Link to="/" className="text-xl font-extrabold">HIREVOO</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>

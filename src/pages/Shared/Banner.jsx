@@ -5,10 +5,8 @@ import team2 from "../../assets/team/team2.jpg";
 
 function Banner() {
 
- 
-
   return (
-    <div className="hero bg-base-200 min-h-screen">
+    <div className=" max-w-6xl mx-auto bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="flex-1">
           <motion.img

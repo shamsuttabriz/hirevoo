@@ -2,9 +2,15 @@ import React, { use } from "react";
 import Lin from "../assets/Lottie/lin.json";
 import Lottie from "lottie-react";
 import { AuthContext } from "../context/AuthContext";
+import { useLocation, useNavigate } from "react-router";
 
 function SignIn() {
   const { signInUser, signInWithGoogle } = use(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state || "/";
+
+  console.log("Location in signin page: ", location);
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -18,6 +24,7 @@ function SignIn() {
     signInUser(email, password)
       .then((res) => {
         console.log(res.user);
+        navigate(from);
       })
       .catch((err) => {
         console.log(err.message);
@@ -28,6 +35,7 @@ function SignIn() {
     signInWithGoogle()
       .then((res) => {
         console.log(res.user);
+        navigate(from || "/");
       })
       .catch((err) => {
         console.log(err.message);
@@ -50,6 +58,7 @@ function SignIn() {
                   name="email"
                   className="input"
                   placeholder="Email"
+                  required
                 />
                 <label className="label">Password</label>
                 <input
@@ -57,6 +66,7 @@ function SignIn() {
                   name="password"
                   className="input"
                   placeholder="Password"
+                  required
                 />
                 <div>
                   <a className="link link-hover">Forgot password?</a>
