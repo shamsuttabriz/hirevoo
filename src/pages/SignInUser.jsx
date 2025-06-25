@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import { useLocation, useNavigate } from "react-router";
 
 function SignIn() {
-  const { signInUser, signInWithGoogle } = use(AuthContext);
+  const { signInUser,setUser, signInWithGoogle } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state || "/";
@@ -35,6 +35,7 @@ function SignIn() {
     signInWithGoogle()
       .then((res) => {
         console.log(res.user);
+        setUser(res.user);
         navigate(from || "/");
       })
       .catch((err) => {

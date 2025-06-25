@@ -13,6 +13,7 @@ function Navbar() {
       <li>
         <NavLink to="/about">About</NavLink>
       </li>
+      {/* For applicant links. Check roles as well */}
       {user && (
         <>
           <li>
@@ -20,6 +21,14 @@ function Navbar() {
           </li>
         </>
       )}
+      {/* For recruiter links. Check role as well */}
+      {
+        user && <>
+          <li>
+            <NavLink to="/add-job">Add Job</NavLink>
+          </li>
+        </>
+      }
     </>
   );
 

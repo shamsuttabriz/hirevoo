@@ -1,6 +1,8 @@
-import React from "react";
+import useAuth from "../../hooks/useAuth";
 
 function ApplicationStats() {
+  const { user } = useAuth();
+  console.log(user.photoURL);
   return (
     <div className="stats shadow w-full my-6">
       <div className="stat">
@@ -49,7 +51,7 @@ function ApplicationStats() {
         <div className="stat-figure text-secondary">
           <div className="avatar avatar-online">
             <div className="w-16 rounded-full">
-              <img src="https://img.daisyui.com/images/profile/demo/anakeen@192.webp" />
+              <img src={user.photoURL} />
             </div>
           </div>
         </div>
