@@ -7,8 +7,6 @@ function JobCard({ job }) {
     _id,
     title,
     location,
-    jobType,
-    category,
     salaryRange,
     requirements,
     description,
@@ -39,9 +37,9 @@ function JobCard({ job }) {
           <span className="font-bold">Salary:</span> {salaryRange.min} -{" "}
           {salaryRange.max} {salaryRange.currency}
         </p>
-        <p>{description.slice(0, 80)}...</p>
+        <p>{description?.slice(0, 80)}...</p>
         <div className="card-actions my-2">
-          {requirements.slice(0, 2).map((req, index) => (
+          {requirements?.slice(0, 2).map((req, index) => (
             <div
               key={index}
               className="badge-xs border border-blue-300 rounded-2xl text-blue-600 badge-outline text-xs"

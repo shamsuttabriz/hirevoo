@@ -19,6 +19,9 @@ function Navbar() {
           <li>
             <NavLink to="/my-applications">My Applications</NavLink>
           </li>
+          <li>
+            <NavLink to="/jobsByEmailAddress">My Posted Jobs</NavLink>
+          </li>
         </>
       )}
       {/* For recruiter links. Check role as well */}

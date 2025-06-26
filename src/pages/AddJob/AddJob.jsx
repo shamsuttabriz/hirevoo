@@ -1,5 +1,7 @@
 import React from "react";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 function AddJob() {
   const { user } = useAuth();
@@ -21,14 +23,33 @@ function AddJob() {
     };
 
     // Process Requirements
-    newJob.job_requirement = newJob.job_requirement
+    newJob.requirements = newJob.requirements
       .split(",")
       .map((req) => req.trim());
 
     // Process Responsibilities
-    newJob.job_responsibilities = newJob.job_responsibilities
+    newJob.responsibilities = newJob.responsibilities
       .split(",")
       .map((res) => res.trim());
+
+    // save job to the db
+    axios
+      .post("http://localhost:3000/jobs", newJob)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Job add successfully!",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
   return (
     <div className="max-w-6xl mx-auto flex justify-center my-12">
@@ -42,7 +63,7 @@ function AddJob() {
           <label className="label">Job Title</label>
           <input
             type="text"
-            name="job_title"
+            name="title"
             className="input w-full"
             placeholder="Enter job title"
           />
@@ -114,7 +135,7 @@ function AddJob() {
           <legend className="fieldset-legend text-base">Job Category</legend>
           <select
             defaultValue="Job Category"
-            name="job_category"
+            name="category"
             className="select w-full"
           >
             <option disabled={true}>Job Category</option>
@@ -129,7 +150,11 @@ function AddJob() {
           <legend className="fieldset-legend text-base">
             Application date
           </legend>
-          <input type="date" name="date" className="input w-full" />
+          <input
+            type="date"
+            name="applicationDeadline"
+            className="input w-full"
+          />
         </fieldset>
 
         {/* Salary Range */}
@@ -175,7 +200,7 @@ function AddJob() {
         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xl border p-4">
           <legend className="fieldset-legend text-base">Job Description</legend>
           <textarea
-            name="job_description"
+            name="description"
             className="textarea w-full resize-none "
             placeholder="Job description"
           ></textarea>
@@ -187,7 +212,7 @@ function AddJob() {
             Job Requirements
           </legend>
           <textarea
-            name="job_requirement"
+            name="requirements"
             className="textarea w-full resize-none"
             placeholder="Job Requirements (Seperate by comma)"
           ></textarea>
@@ -199,7 +224,7 @@ function AddJob() {
             Job Responsibilities
           </legend>
           <textarea
-            name="job_responsibilities"
+            name="responsibilities"
             className="textarea w-full resize-none"
             placeholder="Job Responsivilities (Seperate by comma)"
           ></textarea>

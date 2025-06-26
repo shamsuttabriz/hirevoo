@@ -4,12 +4,13 @@ import Home from "../pages/Home";
 import Register from "../pages/Register";
 import SignIn from "../pages/SignInUser";
 import JobDetails from "../pages/JobDetails";
-import { param } from "motion/react-client";
 import { Loader } from "lucide-react";
 import PrivateRoute from "../routes/PrivateRoute";
 import JobApply from "../pages/JobApply";
 import MyApplications from "../pages/MyApplications";
 import AddJob from "../pages/AddJob/AddJob";
+import MyPostedJobs from "../pages/MyPostedJobs";
+import ViewApplications from "../pages/ViewApplications";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,25 @@ export const router = createBrowserRouter([
             <AddJob />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/jobsByEmailAddress",
+        element: (
+          <PrivateRoute>
+            <MyPostedJobs />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/applications/:job_id",
+        element: (
+          <PrivateRoute>
+            <ViewApplications />
+          </PrivateRoute>
+        ),
+        hydrateFallbackElement: <Loader />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/applications/job/${params.job_id}`),
       },
       {
         path: "/register",
