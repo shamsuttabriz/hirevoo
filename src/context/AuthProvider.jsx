@@ -9,6 +9,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../Firebase/firebase.init";
+import axios from "axios";
 
 const provider = new GoogleAuthProvider();
 
@@ -29,7 +30,7 @@ function AuthProvider({ children }) {
   const signInWithGoogle = () => {
     setLoading(true);
     return signInWithPopup(auth, provider);
-  }
+  };
 
   const signOutUser = () => {
     setLoading(true);
@@ -41,6 +42,19 @@ function AuthProvider({ children }) {
     const unsubscriber = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
+      if (currentUser?.email) {
+        const usreData = { email: currentUser.email };
+        axios
+          .post("http://localhost:3000/jwt", usreData, {
+            withCredentials: true
+          })
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
       console.log("After observer in user: ", currentUser);
     });
     return () => unsubscriber();
