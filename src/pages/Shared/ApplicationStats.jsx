@@ -2,7 +2,7 @@ import useAuth from "../../hooks/useAuth";
 
 function ApplicationStats() {
   const { user } = useAuth();
-  console.log(user.photoURL);
+  
   return (
     <div className="stats shadow w-full my-6">
       <div className="stat">

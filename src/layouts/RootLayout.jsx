@@ -7,7 +7,9 @@ function RootLayout() {
   return (
     <div>
       <Navbar />
-      <Outlet />
+      <div className="px-5">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );

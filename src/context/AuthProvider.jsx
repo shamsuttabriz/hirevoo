@@ -43,17 +43,10 @@ function AuthProvider({ children }) {
       setUser(currentUser);
       setLoading(false);
       if (currentUser?.email) {
-        const usreData = { email: currentUser.email };
         axios
-          .post("http://localhost:3000/jwt", usreData, {
-            withCredentials: true
-          })
-          .then((res) => {
-            console.log(res.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+          .post("http://localhost:3000/jwt", { email: currentUser.email }, {withCredentials: true})
+          .then((res) => console.log(res.data))
+          .catch((err) => console.log(err));
       }
       console.log("After observer in user: ", currentUser);
     });

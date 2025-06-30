@@ -46,7 +46,7 @@ function SignIn() {
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
-          <Lottie style={{ widh: "200px" }} animationData={Lin} loop={true} />
+          <Lottie style={{ width: "200px" }} animationData={Lin} loop={true} />
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">
